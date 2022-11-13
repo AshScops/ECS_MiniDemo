@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Components\BulletComponent.cs" />
     <Compile Include="Assets\Scripts\ScriptsWithLearn\Test.cs" />
     <Compile Include="Assets\Scripts\Systems\DrawSystem.cs" />
+    <Compile Include="Assets\Scripts\Managers\EventManager.cs" />
     <Compile Include="Assets\Scripts\Components\AddForceComponent.cs" />
     <Compile Include="Assets\Scripts\ScriptsWithLearn\MyJob.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -89,7 +90,6 @@
     <Compile Include="Assets\Scripts\Systems\MyTriggerEventSystem.cs" />
     <Compile Include="Assets\Scripts\Components\DeleteComponent.cs" />
     <Compile Include="Assets\Scripts\Systems\MyCollisionJob.cs" />
-    <Compile Include="Assets\Scripts\Managers\EventManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

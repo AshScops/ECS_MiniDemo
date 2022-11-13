@@ -22,14 +22,21 @@ struct MyTriggerJob : ITriggerEventsJob
             Debug.Log("TriggerDone!A");
 
             DeleteComponent dc = DeleteComponentGroup[triggerEvent.EntityA];
-            if (dc.shouldDeleted) return;
-            dc.shouldDeleted = true;
-            DeleteComponentGroup[triggerEvent.EntityA] = dc;
+            if (!dc.shouldDeleted)
+            {
+                dc.shouldDeleted = true;
+                DeleteComponentGroup[triggerEvent.EntityA] = dc;
             
-            CharacterComponent cc = CharacterComponentGroup[triggerEvent.EntityB];
-            if (cc.health - 1 < 0) cc.health = 0;
-            else cc.health--;
-            CharacterComponentGroup[triggerEvent.EntityB] = cc;
+                CharacterComponent cc = CharacterComponentGroup[triggerEvent.EntityB];
+                if (cc.health - 1 < 0)
+                    cc.health = 0;
+                else if(cc.hitCD <= 0)
+                {
+                    cc.health--;
+                    cc.hitCD = 0.5f;
+                }
+                CharacterComponentGroup[triggerEvent.EntityB] = cc;
+            }
         }
         else if (BulletComponentGroup.HasComponent(triggerEvent.EntityB))
         {
@@ -37,14 +44,22 @@ struct MyTriggerJob : ITriggerEventsJob
             Debug.Log("TriggerDone!B");
 
             DeleteComponent dc = DeleteComponentGroup[triggerEvent.EntityB];
-            if (dc.shouldDeleted) return;
-            dc.shouldDeleted = true;
-            DeleteComponentGroup[triggerEvent.EntityB] = dc;
+            if (!dc.shouldDeleted)
+            {
+                dc.shouldDeleted = true;
+                DeleteComponentGroup[triggerEvent.EntityB] = dc;
 
-            CharacterComponent cc = CharacterComponentGroup[triggerEvent.EntityA];
-            if (cc.health - 1 < 0) cc.health = 0;
-            else cc.health--;
-            CharacterComponentGroup[triggerEvent.EntityA] = cc;
+                CharacterComponent cc = CharacterComponentGroup[triggerEvent.EntityA];
+                if (cc.health - 1 < 0)
+                    cc.health = 0;
+                else if (cc.hitCD <= 0)
+                {
+                    cc.health--;
+                    cc.hitCD = 0.1f;
+                }
+                    Debug.Log(cc.hitCD);
+                CharacterComponentGroup[triggerEvent.EntityA] = cc;
+            }
 
             //TODO:¼ÓÌØÐ§
 
